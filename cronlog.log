@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/ss2468456/hcs/nhcs.py", line 48, in <module>
+    asyncio.get_event_loop().run_until_complete(main())
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/ss2468456/hcs/nhcs.py", line 28, in main
+    res = await hcskr.asyncSelfCheck(i,d['birthday'],d['area'],d['org'],d['level'],d['password'])
+  File "/home/ss2468456/.local/lib/python3.8/site-packages/hcskr/hcs.py", line 91, in asyncSelfCheck
+    login_result = await asyncUserLogin(
+  File "/home/ss2468456/.local/lib/python3.8/site-packages/hcskr/hcs.py", line 232, in asyncUserLogin
+    school_infos = await search_school(
+  File "/home/ss2468456/.local/lib/python3.8/site-packages/hcskr/request.py", line 35, in search_school
+    return await resp.json()
+  File "/home/ss2468456/.local/lib/python3.8/site-packages/aiohttp/client_reqrep.py", line 1097, in json
+    raise ContentTypeError(
+aiohttp.client_exceptions.ContentTypeError: 0, message='Attempt to decode JSON with unexpected mimetype: text/html', url=URL('https://hcs.eduro.go.kr/v2/searchSchool?lctnScCode=03&schulCrseScCode=4&orgName=%ED%8F%AC%EC%82%B0%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90&loginType=school')

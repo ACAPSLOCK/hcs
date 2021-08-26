@@ -1,4 +1,6 @@
 import json
+import hcskr
+import asyncio
 
 with open('index.json','r',encoding='utf-8') as f:
     data=json.load(f)
@@ -13,7 +15,12 @@ password=input('자가진단비밀번호(4자리)')
 
 data[name]={'area' : code, 'level' : level, 'org' : org, 'birthday' : birthday, 'password' : password}
 
-
-
-with open('index.json', 'w', encoding="utf-8") as make_file:
-    json.dump(data, make_file, indent="\t")
+async def check(d):
+    res = await hcskr.asyncSelfCheck(name,d['birthday'],d['area'],d['org'],d['level'],d['password'])
+    if res['error']==False:
+        with open('index.json', 'w', encoding="utf-8") as make_file:
+            json.dump(data, make_file, indent="\t")
+        print(name+'의 사용자등록을 완료했습니다.')
+    else:
+        print(name+'의 사용자등록을 실패했습니다.')
+asyncio.get_event_loop().run_until_complete(check(data[name]))

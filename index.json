@@ -208,5 +208,19 @@
 		"org": "\ud55c\uc6b8\uc548",
 		"birthday": "080506",
 		"password": "3131"
+	},
+	"\uae40\uc900\uc601": {
+		"area": "\ub300\uad6c",
+		"level": "\uace0",
+		"org": "\uad6c\uc554\uace0",
+		"birthday": "050225",
+		"password": "0225"
+	},
+	"\uc774\uacbd\ubbfc": {
+		"area": "\ub300\uad6c",
+		"level": "\uace0",
+		"org": "\uad6c\uc554\uace0",
+		"birthday": "050701",
+		"password": "0506"
 	}
 }

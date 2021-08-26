@@ -21,7 +21,7 @@ def sendGmail(text, code):
 async def main():
     n=0
     st=''
-    with open('index.json',encoding='utf-8') as f:
+    with open('/home/ss2468456/hcs/index.json',encoding='utf-8') as f:
         data=json.load(f)
     for i in data:
         d=data[i]
@@ -30,12 +30,19 @@ async def main():
             print(i+'의 자가진단을 완료했습니다.')
             n+=1
         else:
-            st+=i+'의'+res['message']+'\n'
+            print(i+'1st error')
+            res = await hcskr.asyncSelfCheck(i,d['birthday'],d['area'],d['org'],d['level'],d['password'])
+            if res['error']==False:
+                print(i+'의 자가진단을 완료했습니다.')
+                n+=1
+            else:
+                print(i+'2nd error')
+                st+=i+'의'+res['message']+'\n'
     if st=='':
-        sendGmail(str(n)+'명의 자가진단을 완료했습니다','success')
+        return(sendGmail(str(n)+'명의 자가진단을 완료했습니다','success'))
     else:
         print(st)
-        sendGmail(st, 'error')
+        return(sendGmail(st, 'error'))
         
         
 asyncio.get_event_loop().run_until_complete(main())
